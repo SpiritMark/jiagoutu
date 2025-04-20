@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpringBoot+Vue 博客系统架构 V1.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            background-image: 
+                linear-gradient(rgba(50, 50, 50, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(50, 50, 50, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .arrow-container {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -10px 0;
+            z-index: 10;
+        }
+        .arrow-down {
+            width: 40px;
+            height: 20px;
+            position: relative;
+        }
+        .arrow-down:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 16px;
+            background-color: #06b6d4;
+        }
+        .arrow-down:before {
+            content: '';
+            position: absolute;
+            left: calc(50% - 6px);
+            top: 12px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #06b6d4;
+        }
+        .bi-directional:after {
+            height: 10px;
+        }
+        .bi-directional:before {
+            top: 6px;
+        }
+        .bi-directional .arrow-up:before {
+            content: '';
+            position: absolute;
+            left: calc(50% - 6px);
+            top: 0px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 8px solid #06b6d4;
+        }
+        .highlight {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.7);
+            transition: all 0.3s ease;
+        }
+        .tech-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+            font-size: 0.7rem;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-7xl">
+        <!-- 标题 -->
+        <div class="text-center text-3xl font-bold text-cyan-400 mb-8">
+            SpringBoot + Vue 博客系统架构 V1.0
+        </div>
+
+        <!-- 用户层 -->
+        <div class="bg-pink-600 rounded-xl p-4 mb-2 highlight">
+            <div class="text-center text-white text-xl mb-2">用户访问层</div>
+            <div class="flex justify-around">
+                <div class="bg-pink-800 rounded-lg p-3 text-white text-center w-1/3 mx-2">
+                    PC 端 (浏览器)
+                    <div class="tech-badge">Vue3</div>
+                </div>
+                <div class="bg-pink-800 rounded-lg p-3 text-white text-center w-1/3 mx-2">
+                    移动端 (H5/App)
+                    <div class="tech-badge">响应式设计</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 箭头 -->
+        <div class="arrow-container">
+            <div class="arrow-down bi-directional">
+                <div class="arrow-up"></div>
+            </div>
+        </div>
+
+        <!-- 前端架构 -->
+        <div class="bg-blue-600 rounded-xl p-4 mb-2 highlight">
+            <div class="text-center text-white text-xl mb-2">前端架构层</div>
+            <div class="flex justify-between">
+                <div class="bg-blue-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    Vue3 组件
+                    <div class="tech-badge">组合式API</div>
+                </div>
+                <div class="bg-blue-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    Vuex 状态管理
+                    <div class="tech-badge">全局状态</div>
+                </div>
+                <div class="bg-blue-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    Vue Router
+                    <div class="tech-badge">路由导航</div>
+                </div>
+                <div class="bg-blue-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    Element Plus/Ant Design
+                    <div class="tech-badge">UI组件库</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 箭头 -->
+        <div class="arrow-container">
+            <div class="arrow-down bi-directional">
+                <div class="arrow-up"></div>
+            </div>
+        </div>
+
+        <!-- 网关层 -->
+        <div class="bg-cyan-600 rounded-xl p-4 mb-2 highlight">
+            <div class="text-center text-white text-xl mb-2">网关与服务治理</div>
+            <div class="flex justify-between">
+                <div class="bg-cyan-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    Nginx 反向代理
+                    <div class="tech-badge">静态资源缓存</div>
+                </div>
+                <div class="bg-cyan-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    负载均衡
+                    <div class="tech-badge">流量分发</div>
+                </div>
+                <div class="bg-cyan-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    API 网关
+                    <div class="tech-badge">请求过滤</div>
+                </div>
+                <div class="bg-cyan-800 rounded-lg p-3 text-white text-center flex-1 mx-1">
+                    JWT 认证
+                    <div class="tech-badge">无状态认证</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 箭头 -->
+        <div class="arrow-container">
+            <div class="arrow-down bi-directional">
+                <div class="arrow-up"></div>
+            </div>
+        </div>
+
+        <!-- 后端微服务 -->
+        <div class="bg-teal-600 rounded-xl p-4 mb-2 highlight">
+            <div class="text-center text-white text-xl mb-2">核心业务服务层</div>
+            <div class="flex flex-wrap justify-between">
+                <div class="w-1/4 p-2">
+                    <div class="bg-teal-700 rounded-xl p-2 h-full">
+                        <div class="text-center text-white text-lg border-b border-teal-500 pb-1 mb-2">用户服务</div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            用户认证授权
+                            <div class="tech-badge">Spring Security</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            用户信息管理
+                            <div class="tech-badge">Rest API</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 text-white text-center text-sm">
+                            关注与粉丝
+                            <div class="tech-badge">社交关系</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/4 p-2">
+                    <div class="bg-teal-700 rounded-xl p-2 h-full">
+                        <div class="text-center text-white text-lg border-b border-teal-500 pb-1 mb-2">内容服务</div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            文章管理
+                            <div class="tech-badge">CRUD操作</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            分类与标签
+                            <div class="tech-badge">多对多关系</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 text-white text-center text-sm">
+                            全文检索
+                            <div class="tech-badge">Elasticsearch</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/4 p-2">
+                    <div class="bg-teal-700 rounded-xl p-2 h-full">
+                        <div class="text-center text-white text-lg border-b border-teal-500 pb-1 mb-2">交互服务</div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            评论系统
+                            <div class="tech-badge">树形结构</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            点赞收藏
+                            <div class="tech-badge">用户行为</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 text-white text-center text-sm">
+                            消息通知
+                            <div class="tech-badge">RabbitMQ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/4 p-2">
+                    <div class="bg-teal-700 rounded-xl p-2 h-full">
+                        <div class="text-center text-white text-lg border-b border-teal-500 pb-1 mb-2">系统服务</div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            统计分析
+                            <div class="tech-badge">数据聚合</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 mb-2 text-white text-center text-sm">
+                            文件上传
+                            <div class="tech-badge">MinIO</div>
+                        </div>
+                        <div class="bg-teal-800 rounded-lg p-2 text-white text-center text-sm">
+                            SEO优化
+                            <div class="tech-badge">元数据</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 箭头 -->
+        <div class="arrow-container">
+            <div class="arrow-down bi-directional">
+                <div class="arrow-up"></div>
+            </div>
+        </div>
+
+        <!-- 数据访问层 -->
+        <div class="bg-purple-600 rounded-xl p-4 mb-2 flex highlight">
+            <div class="w-1/2 pr-2">
+                <div class="bg-purple-700 rounded-xl p-3 h-full">
+                    <div class="text-center text-white text-xl mb-3">数据访问层</div>
+                    <div class="flex flex-wrap justify-between">
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-full">
+                            Spring Boot
+                            <div class="tech-badge">后端核心框架</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            Spring Security
+                            <div class="tech-badge">认证授权</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            MyBatis-Plus
+                            <div class="tech-badge">ORM框架</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            读写分离
+                            <div class="tech-badge">主从数据库</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            缓存策略
+                            <div class="tech-badge">多级缓存</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2 pl-2">
+                <div class="bg-purple-700 rounded-xl p-3 h-full">
+                    <div class="text-center text-white text-xl mb-3">数据分析层</div>
+                    <div class="flex flex-wrap justify-between">
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            用户行为分析
+                            <div class="tech-badge">数据挖掘</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 mb-3 text-white text-center w-[48%]">
+                            内容热度分析
+                            <div class="tech-badge">统计算法</div>
+                        </div>
+                        <div class="bg-purple-800 rounded-lg p-2 text-white text-center w-full">
+                            数据可视化平台
+                            <div class="tech-badge">图表展示</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 箭头 -->
+        <div class="arrow-container">
+            <div class="arrow-down bi-directional">
+                <div class="arrow-up"></div>
+            </div>
+        </div>
+
+        <!-- 底层技术栈 -->
+        <div class="bg-emerald-600 rounded-xl p-4 highlight">
+            <div class="text-center text-white text-xl mb-2">技术支撑模块</div>
+            <div class="flex justify-between flex-wrap">
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    MySQL主从复制
+                    <div class="tech-badge">数据持久化</div>
+                </div>
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    Redis缓存
+                    <div class="tech-badge">高速存取</div>
+                </div>
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    Elasticsearch
+                    <div class="tech-badge">全文检索</div>
+                </div>
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    RabbitMQ
+                    <div class="tech-badge">消息队列</div>
+                </div>
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    MinIO
+                    <div class="tech-badge">对象存储</div>
+                </div>
+                <div class="bg-emerald-800 rounded-lg p-3 text-white text-center w-1/3 lg:w-1/6 m-1">
+                    Docker/K8s
+                    <div class="tech-badge">容器编排</div>
+                </div>
+            </div>
+            
+            <!-- 添加CI/CD流程 -->
+            <div class="mt-3 bg-emerald-700 rounded-lg p-2 text-white">
+                <div class="text-center font-semibold mb-1">CI/CD流程</div>
+                <div class="flex justify-between">
+                    <div class="bg-emerald-800 rounded-lg p-2 text-white text-center flex-1 mx-1 text-sm">
+                        代码提交
+                    </div>
+                    <div class="text-emerald-300 flex items-center">→</div>
+                    <div class="bg-emerald-800 rounded-lg p-2 text-white text-center flex-1 mx-1 text-sm">
+                        自动测试
+                    </div>
+                    <div class="text-emerald-300 flex items-center">→</div>
+                    <div class="bg-emerald-800 rounded-lg p-2 text-white text-center flex-1 mx-1 text-sm">
+                        构建镜像
+                    </div>
+                    <div class="text-emerald-300 flex items-center">→</div>
+                    <div class="bg-emerald-800 rounded-lg p-2 text-white text-center flex-1 mx-1 text-sm">
+                        自动部署
+                    </div>
+                    <div class="text-emerald-300 flex items-center">→</div>
+                    <div class="bg-emerald-800 rounded-lg p-2 text-white text-center flex-1 mx-1 text-sm">
+                        监控反馈
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 版权信息 -->
+        <div class="text-center text-gray-500 text-xs mt-4">
+            © 2023 SpringBoot+Vue博客系统架构图 | 现代简约设计
+        </div>
+    </div>
+</body>
+</html>
